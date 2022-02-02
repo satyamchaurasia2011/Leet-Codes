@@ -1,32 +1,28 @@
 class Solution {
 public:
     vector<int> findAnagrams(string s, string p) {
-        int s_len = s.length();
-        int p_len = p.length();
-        
-        if(s.size() < p.size()) return {};
-        
-        vector<int> freq_p(26,0);
-        vector<int> window(26,0);
-        
-        //first window
-        for(int i=0;i<p_len;i++){
-            freq_p[p[i]-'a']++;
-            window[s[i]-'a']++;
+        if(s.length()<p.length()) return {};
+        vector<int>vecp(26, 0);
+        vector<int>vecs(26,0);
+        vector<int>anag;
+        for(int i=0; i<p.length(); i++)
+            vecp[p[i] - 'a']++;
+    //first window
+        for(int i=0; i<p.length(); i++)
+        {
+            vecs[s[i] - 'a']++;
         }
+        if(vecs == vecp) anag.push_back(0);
         
-        vector<int> ans;
-        if(freq_p == window) ans.push_back(0);
-        
-        for(int i=p_len;i<s_len;i++){
-            window[s[i-p_len] - 'a']--;
-            window[s[i] - 'a']++;
-            
-            if(freq_p == window) ans.push_back(i-p_len+1);
+        for(int i=p.length(); i<s.length(); i++)
+        {
+            vecs[s[i - p.length()] - 'a']--;
+            vecs[s[i] - 'a']++;
+            if(vecs == vecp) 
+                anag.push_back(i-p.length()+1);
         }
-        return ans;
-        }
+        return anag;
           
-      
+    }
     
 };
