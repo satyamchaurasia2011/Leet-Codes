@@ -1,19 +1,12 @@
 class Solution {
 public:
     char findTheDifference(string s, string t) {
-        map<int, int>mp;
-        map<int, int>mp1;
-        char res;
-        for(auto a : s)
-            mp[a]++;
-        for(auto b : t)
-            mp1[b]++;
-        for(auto b : t)
-            if(mp[b] != mp1[b]){
-                 res = b;
-                break;
-            }
-         
-        return res;
+        int ans=0;
+       for(int i=0; i<s.length(); i++){
+            ans -= s[i];
+            ans += t[i];
+       }
+        ans += t[s.length()];
+        return ans;
     }
 };
