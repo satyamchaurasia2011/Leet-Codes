@@ -2,8 +2,7 @@ class Solution {
     vector<vector<int>>comb;
     void dfs(vector<int>& candidates, int i, int total, int target, vector<int>& temp){
         if(total == target){
-            vector<int>copy = temp;
-            comb.push_back(copy);
+            comb.push_back(temp);
             return;
         }
         else if(i >= candidates.size() || total > target)
