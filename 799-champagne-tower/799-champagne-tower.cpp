@@ -1,6 +1,9 @@
 class Solution {
 public:
     double champagneTower(int poured, int query_row, int query_glass) {
+        //    4
+        // 1.5  1.5
+    // 0.25  0.50   0.25                   // 0.25 0.25+0.25 0.25 
         vector<vector<double>>sham(102, vector<double>(102, 0));
         sham[0][0] = poured;
         for(int i=0; i<query_row; i++)
