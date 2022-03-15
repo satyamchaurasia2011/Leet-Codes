@@ -1,7 +1,6 @@
 class Solution {
 public:
     string minRemoveToMakeValid(string s) {
-        stack<char>stk;
         int p = 0;
         string res = "";
         for(int i=0; i<s.size(); i++){
