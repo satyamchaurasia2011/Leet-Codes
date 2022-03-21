@@ -13,7 +13,6 @@ public:
            if(i == max_ind){
                res.push_back(max_ind - prev);
                prev = max_ind;
-               max_ind = 0;
            }     
         }
         return res;
