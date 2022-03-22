@@ -17,3 +17,8 @@ public:
         return str;
     }
 };
+
+//move from backward put larger value first
+//   if (k - remaining_position > 26) then there should be a 'z'.
+//   otherwise k - remaining position is the answer of that index amd the remaining index should
+//   be filled with 'a'.
