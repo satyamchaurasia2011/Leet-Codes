@@ -7,17 +7,18 @@ public:
        int j = people.size()-1;
         while(i < j)
         {
-            if(people[i] + people[j] > limit)
+            if(people[i] + people[j] > limit){
+                boat++;
                 j--;
+            }
             else {
                 boat++;
                 people[i++] = -1;
                 people[j--] = -1;
             }
         }
-        for(auto &&a : people)
-            if(a != -1)
-                boat++;
+        if(i == j)
+            boat++;
         return boat;
         
     }
