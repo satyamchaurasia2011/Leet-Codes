@@ -13,8 +13,8 @@ public:
             }
             else {
                 boat++;
-                people[i++] = -1;
-                people[j--] = -1;
+                i++;
+                j--;
             }
         }
         if(i == j)
