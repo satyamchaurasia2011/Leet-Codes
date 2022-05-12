@@ -15,10 +15,11 @@ class Solution{
         for(int i=0; i<n; i++)
         {
             s += arr[i];
+            if(s < arr[i])
+               s = arr[i];
             if(max < s)
                max = s;
-            if(s < 0)
-              s=0;
+            
         }
         // Your code here
         return max;
