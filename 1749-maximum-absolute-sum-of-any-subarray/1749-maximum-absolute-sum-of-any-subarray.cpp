@@ -7,19 +7,11 @@ public:
         int min_fin = nums[0];
         for(int i=1; i<nums.size(); i++)
         {
-            max_so += nums[i];
-            if((max_so) < (nums[i]))
-                max_so = nums[i];
-            if((max_so) > (max_fin))
-                max_fin = max_so;
-        }
-         for(int i=1; i<nums.size(); i++)
-        {
-            min_so += nums[i];
-            if((min_so) > (nums[i]))
-                min_so = nums[i];
-            if((min_so) < (min_fin))
-                min_fin = min_so;
+            max_so = max(nums[i], nums[i]+max_so);
+            min_so = min(nums[i], nums[i]+min_so);
+            
+            max_fin = max(max_so, max_fin);
+            min_fin = min(min_so, min_fin);
         }
         return max(abs(max_fin), abs(min_fin));
     }
