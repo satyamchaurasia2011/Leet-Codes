@@ -9,12 +9,22 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-      while(head) { 
-          if(head->val==1000000)
-            return head;
-          head->val = 1000000;
-          head  = head->next; 
-      }
-        return NULL;
+      ListNode *slow = head;
+      ListNode *fast = head;
+       while (slow != NULL && fast != NULL && fast->next != NULL) {
+            slow = slow->next;
+            fast = fast->next->next;
+            if (slow == fast)
+                break;
+        }
+        if(slow != fast || !head || !head->next)
+            return nullptr;
+     slow = head;
+    while(slow != fast)
+    {
+        slow = slow->next;
+        fast = fast->next;
+    }
+        return slow;
     }
 };
