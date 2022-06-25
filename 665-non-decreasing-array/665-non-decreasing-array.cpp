@@ -8,8 +8,6 @@ public:
                 count++;
                 if(i-1 < 0)
                     nums[i] = nums[i+1];
-                else if(i+1 == nums.size()-1)
-                    nums[i+1] = nums[i];
                 else if(nums[i-1] > nums[i+1])
                      nums[i+1] = nums[i];
                 else
