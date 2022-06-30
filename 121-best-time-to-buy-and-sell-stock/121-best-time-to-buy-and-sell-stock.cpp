@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maxProfit(vector<int>& prices) {
-        int curr_high = prices.back();
+       int curr_high = prices.back();
         int max_pro = 0;
         for(int i=prices.size()-1; i>=0; i--)
         {
@@ -10,5 +10,7 @@ public:
         }
        
         return max_pro;
+        
+        
     }
 };
