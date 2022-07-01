@@ -6,14 +6,20 @@ public:
         if(r * c != m * n)
             return mat;
         vector<vector<int>>reshaped(r, vector<int>(c));
-        vector<int>s;
-        for(int i=0; i<m; i++)
+       int resr = 0, resc = 0;
+        for(int i=0; i<m; i++){
             for(int j=0; j<n; j++)
-                s.push_back(mat[i][j]);
-        int k=0;
-        for(int i =0; i<r; i++)
-            for(int j=0; j<c; j++)
-                reshaped[i][j] = s[k++];
+            {
+                if(resc == c){
+                    resr++;
+                    resc = 0;
+                }
+                reshaped[resr][resc] = mat[i][j];
+                resc++;
+            }
+        }
+            
+       
         return reshaped;
     }
 };
