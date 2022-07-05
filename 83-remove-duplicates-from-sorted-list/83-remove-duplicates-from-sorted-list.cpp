@@ -14,9 +14,9 @@ public:
         ListNode* p;
         p = head;
         while(p && p->next){
-           if(p->next && p->val != p->next->val)
+           if(p->val != p->next->val)
                p = p->next;
-            else if(p->next)
+            else 
                 p->next = p->next->next;
         }
         return head;
