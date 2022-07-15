@@ -1,30 +1,22 @@
 class Solution {
 public:
-
-    bool isQueenSafe(vector<string>&board, int row, int col, int n){
-        for(int i=row-1, j = col; i>=0; i--)
-            if(board[i][j] == 'Q')
-                return false;
-        for(int i=row-1, j=col-1; i>=0 && j>=0; i--,j--)
-            if(board[i][j] == 'Q')
-                return false;
-        for(int i=row-1, j=col+1; i>=0 && j<n; i--,j++)
-            if(board[i][j] == 'Q')
-                return false;
-        
-        return true;
-    }
     
-    void nQueens(vector<vector<string>>&ans,vector<string>&board, int row, int n){
+    void nQueens(vector<vector<string>>&ans,vector<string>&board, int row, int n, vector<bool>cols, vector<bool>ld, vector<bool>rd){
         if(row == n){
             ans.push_back(board);
             return;
         }
         for(int col = 0; col<n; col++){
-            if(isQueenSafe(board, row, col, n)){
+            if(!cols[col] && !ld[row+col] && !rd[row-col+n-1]){
             board[row][col] = 'Q';
-            nQueens(ans, board, row+1, n);
+            cols[col] = true;
+            ld[row+col] = true;
+            rd[row-col+n-1] = true;
+            nQueens(ans, board, row+1, n, cols, ld, rd);
              board[row][col] = '.';
+            cols[col] = false;
+            ld[row+col] = false;
+            rd[row-col+n-1] = false;
         }
         }
     }
@@ -35,7 +27,10 @@ public:
         string str(n, '.');
         for(int i=0; i<n; i++)
             board[i] = str;
-        nQueens(ans, board, 0,n);
+        vector<bool>cols(n, false);
+        vector<bool>ld(2*n-1, false);
+        vector<bool>rd(2*n-1, false);
+        nQueens(ans, board, 0,n, cols, ld, rd);
         return ans;
     }
 };
