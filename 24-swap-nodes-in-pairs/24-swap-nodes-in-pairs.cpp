@@ -13,25 +13,34 @@ public:
     ListNode* swapPairs(ListNode* head) {
         if(head == nullptr || head->next == nullptr)
             return head;
-        ListNode *p = head;
-        ListNode *p1 = p->next;
-        p->next = p1->next;
-        p1->next = p;
-        head = p1;
-        if(p->next == nullptr)
-            return head;
-        p1 = p->next->next;
-        while(p != nullptr && p1 != nullptr)
-        {
-            p->next->next = p1->next;
-            p1->next = p->next;
-            p->next = p1;
-            p = p->next->next;
-            if(p->next == nullptr || p->next->next == nullptr)
+       if(!head->next->next){
+           ListNode*p = head->next;
+           p->next = head;
+           head->next = nullptr;
+           return p;
+       }
+        ListNode* p = head;
+        ListNode* head1 = head->next;
+        ListNode*q = head1;
+        ListNode* r = head->next->next;
+        while(r){
+            q->next = p;
+            if(r->next == nullptr){
+                p->next = r;
                 break;
-            else
-                p1 = p->next->next;
+            }
+            p->next = r->next;
+            p = r;
+            q = r->next;
+            if(r->next == nullptr)
+                break;
+            r = r->next->next;
         }
-        return head;
+        if(r == nullptr){
+             q->next = p;
+        p->next = nullptr;
+        }
+       return head1;
+       
     }
 };
