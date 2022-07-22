@@ -10,8 +10,7 @@
  */
 class Solution {
 public:
-    ListNode* partition(ListNode* head, int x) {
-        if(!head || !head->next) return head; 
+    ListNode* partition(ListNode* head, int x) {   
         ListNode* dummy = new ListNode;
         dummy->next = head;
         ListNode* prev = dummy;
