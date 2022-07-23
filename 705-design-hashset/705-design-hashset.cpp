@@ -1,23 +1,53 @@
+class Node{
+    public : 
+       int val;
+        Node* next;
+    Node(){val = 0; next = nullptr;}
+};
 class MyHashSet {
 public:
-    list<int>ll;
+    Node* head = nullptr;
     MyHashSet() {
         
     }
     
     void add(int key) {
-        ll.push_back(key);
+        if(contains(key)) return;
+        Node* tmp = new Node;
+        tmp->val = key;
+        tmp->next = head;
+        head = tmp;
+            
     }
     
     void remove(int key) {
-        ll.remove(key);
+     
+        Node* prev = nullptr;
+        Node* curr = head;
+        if(head && head->val == key){
+            head = head->next;
+            return;
+        }
+            
+        while(curr){
+            if(curr->val == key){
+                 prev->next = curr->next;
+                break;
+            }
+               prev = curr;
+            curr = curr->next;
+        }
     }
     
     bool contains(int key) {
-       list<int>::iterator it;
-        for(it = ll.begin(); it != ll.end(); it++)
-            if(*it == key) return true;
+       Node* tmp = head;
+        while(tmp){
+            if(tmp->val == key)
+            return true;
+                tmp = tmp->next;
+        }
         return false;
+           
     }
 };
 
