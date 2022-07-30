@@ -1,5 +1,11 @@
 class Solution {
 public:
+    bool isUniversal(vector<int>a, vector<int>b){
+        for(int i=0; i<26; i++)
+            if(a[i] < b[i])
+                return false;
+        return true;
+    }
     vector<string> wordSubsets(vector<string>& words1, vector<string>& words2) {
         vector<int>mp(26, 0);
         vector<string>ans;
@@ -17,17 +23,8 @@ public:
                 if(mp[words1[i][j] - 'a'] > 0)
                     mp1[words1[i][j] - 'a']++;
             }
-            int f = 0;
-            for(int i=0; i<26; i++){
-                if(mp1[i] < mp[i]){
-                    f= 1;
-                    break;
-                }
-            }
-            if(f == 0)
-                ans.push_back(words1[i]);
-                
-                    
+            if(isUniversal(mp1, mp))
+                ans.push_back(words1[i]);                
         }
         return ans;
     }
