@@ -8,7 +8,6 @@ public:
         
     int numberOfWeakCharacters(vector<vector<int>>& properties) {
         sort(properties.begin(), properties.end(), compare);
-        stack<int>stk;
         int count = 0 ;
         int max_val = INT_MIN;
         for(int i=properties.size()-1; i>=0; i--){
