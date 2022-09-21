@@ -1,16 +1,13 @@
 class Solution {
 public:
+    int Fib[31] = {0};
     int fib(int n) {
-        if(n == 0)
-            return 0;
-       int fterm = 0, sterm = 1,sum;
-        for(int i=2; i<=n; i++){
-            sum = fterm + sterm;
-            fterm = sterm;
-            sterm = sum;
-        }
-        return sterm;
-            
+        if(n <= 1)
+            return n;
         
+        if(Fib[n] != 0)
+            return Fib[n];
+        Fib[n] = fib(n-1)+fib(n-2);
+        return Fib[n];
     }
 };
