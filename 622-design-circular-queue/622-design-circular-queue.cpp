@@ -1,46 +1,66 @@
 class MyCircularQueue {
-    private:
-    vector<int>q;
-    int head=0,tail=-1;
-    int maxsize=-1;
+    int *arr;
+    int rear, front, size;
 public:
     MyCircularQueue(int k) {
-        maxsize=k;
-        q.resize(k);
+        arr = new int[k];
+        rear = front = -1;
+        size = k;
     }
     
     bool enQueue(int value) {
-        if(isFull())return false;
-        tail=(tail+1)%maxsize;
-        q[tail]=value;
-       
-     return true; 
+        if(isFull())
+            return false;
+        else if(front == -1)
+            front = rear = 0;
+        else if(rear == size-1 && front != 0)
+            rear = 0;
+        else
+            rear = rear+1;
+        arr[rear] = value;
+        return true;
     }
     
     bool deQueue() {
-        if(isEmpty())return false;
-        if(head==tail)head=0,tail=-1;
-      else  head=(head+1)%maxsize;
+        if(isEmpty())
+            return false;
+        else if(front == rear)
+            front = rear = -1;
+        else if(front == size-1)
+            front = 0;
+        else
+          front++;
         return true;
     }
     
     int Front() {
-        if(isEmpty())return -1;
-        return q[head];
+        if(isEmpty())
+            return -1;
+        return arr[front];
     }
     
     int Rear() {
-          if(isEmpty())return -1;
-        return q[tail];
+        if(isEmpty())
+            return -1;
+        return arr[rear];
     }
     
     bool isEmpty() {
-        if(head==0 && tail==-1)return true;
-return false;
+        return front == -1;
     }
     
     bool isFull() {
-      if(!isEmpty() && head==(tail+1)%maxsize)return true;
-        return false;
+        return ((rear == size-1 && front == 0) || rear == front-1);
     }
 };
+
+/**
+ * Your MyCircularQueue object will be instantiated and called as such:
+ * MyCircularQueue* obj = new MyCircularQueue(k);
+ * bool param_1 = obj->enQueue(value);
+ * bool param_2 = obj->deQueue();
+ * int param_3 = obj->Front();
+ * int param_4 = obj->Rear();
+ * bool param_5 = obj->isEmpty();
+ * bool param_6 = obj->isFull();
+ */
