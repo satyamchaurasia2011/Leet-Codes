@@ -11,21 +11,14 @@
  */
 class Solution {
 public:
-    TreeNode* tail(TreeNode* root){
-        while(root->right)
-            root = root->right;
-        return root;
-    }
+    TreeNode *prev = nullptr;
     void flatten(TreeNode* root) {
-        if(root == nullptr) return;
-        flatten(root->left);
+        if(root == nullptr)
+             return;
         flatten(root->right);
-        if(root->left){
-            TreeNode* tailEnd = tail(root->left);
-         tailEnd->right = root->right;
-        root->right = root->left;
+        flatten(root->left);
+        root->right = prev;
         root->left = nullptr;
-        }
-        
+        prev = root;
     }
 };
