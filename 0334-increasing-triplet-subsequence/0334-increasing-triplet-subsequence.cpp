@@ -7,12 +7,10 @@ public:
        int mid = INT_MAX;
        for(int i=0; i<nums.size(); i++)
        {
-           if(start >= nums[i])
-               start = nums[i];
-           else if(mid >= nums[i])
-               mid = nums[i];
-           else
-               return true;
+          if(nums[i] > mid)
+              return true;
+           else if(nums[i] > start && nums[i] < mid) mid = nums[i];
+           else if(nums[i] < start) start = nums[i];
        }
         return false;
     }
