@@ -11,25 +11,26 @@
  */
 class Solution {
 public:
-    void inorder(TreeNode* root, map<int, int>&mp){
+    void inorder(TreeNode* root, vector<int>&arr){
         if(root == nullptr) return;
-        mp[root->val]++;
-        inorder(root->left, mp);
-        inorder(root->right, mp);
+        inorder(root->left, arr);
+        arr.push_back(root->val);
+        inorder(root->right, arr);
     }
-    bool target(TreeNode* root, int k, map<int, int>&mp){
-        if(root == nullptr) return false;
-        if(root->val == (k - root->val)){
-            if(mp[k-root->val] > 1)
-                return true;
-        }
-        else if(mp[k - root->val] > 0)
-            return true;
-        return target(root->left, k, mp) ||  target(root->right, k, mp);
-    }
+    
     bool findTarget(TreeNode* root, int k) {
-        map<int, int>mp;
-        inorder(root, mp);
-        return target(root, k, mp);
+        vector<int>arr;
+        inorder(root, arr);
+        int i=0, j = arr.size()-1;
+        while(i < j)
+        {
+            if(arr[i] + arr[j] == k)
+                return true;
+            else if(arr[i]+arr[j] < k)
+                i++;
+            else 
+                j--;
+        }
+        return false;
     }
 };
