@@ -12,8 +12,6 @@ class Solution{
 public:
     void recReverse(stack<int> &St, stack<int> &St1){
         if(St.empty()){
-            St = St1;
-           
             return;
         }
         int temp = St.top();
